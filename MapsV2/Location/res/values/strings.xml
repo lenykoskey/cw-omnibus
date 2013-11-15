@@ -19,7 +19,7 @@
   <string name="icon">CommonsWare logo</string>
 <string name="menu_settings">Settings</string>
     <string name="title_activity_main_menu">Karibu Nairobi</string>
-    <string name="whataboutTitle">| Karibu Nairobi |               </string>
+    <string name="whataboutTitle">Welcome to Nairobi &#160;&#160;&#160; &#160;&#160;</string>
     <string name="FeedbackActivityTitle">Feedback</string>
     <string name="introTitle">Introduction</string>
     <string name="sacramentsTitle">Sacraments</string>

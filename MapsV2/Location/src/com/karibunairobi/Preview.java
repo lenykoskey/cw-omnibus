@@ -5,6 +5,7 @@ import com.karibunairobi.R;
 import android.R.integer;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -27,16 +28,13 @@ public class Preview extends DashBoardActivity {
 		LinearLayout ln = (LinearLayout) this.findViewById(R.id.linlay);
 		if (pos == 2) {
 			if (position < 5) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.uchumibg));
+				ln.setBackgroundColor(Color.parseColor("#ff0000"));
 			}
 			if ((position > 4) && (position < 10)) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.nakumattbg));
+				ln.setBackgroundColor(Color.parseColor("#183579"));
 			}
 			if ((position > 9) && (position < 15)) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.tuskybg));
+				ln.setBackgroundColor(Color.parseColor("#45734f"));
 			}
 		}
 		if (pos != 2) {
@@ -50,10 +48,15 @@ public class Preview extends DashBoardActivity {
 		Button btnContact = (Button) findViewById(R.id.btnwebsite);
 
 		// decode mode
-
-		btDescription.setText("View Description");
-		btnmap.setText("Check out map");
-		btnContact.setText("View Contacts");
+		if (pos == 6) {
+			btDescription.setText("View Description");
+			btnmap.setText("Check out map");
+			btnContact.setText("View Matatu RouteMap");
+		} else {
+			btDescription.setText("View Description");
+			btnmap.setText("Check out map");
+			btnContact.setText("View Contacts");
+		}
 	}
 
 	public void clickdescription(View v) {
@@ -65,7 +68,7 @@ public class Preview extends DashBoardActivity {
 		final Integer pos = bundle3.getInt("pos");
 
 		Bundle bundle = getIntent().getExtras();
-		
+
 		Bundle bundle2 = new Bundle();
 		bundle2.putInt("pos", pos);
 		bundle2.putInt("position", position);
@@ -77,8 +80,9 @@ public class Preview extends DashBoardActivity {
 	}
 
 	public void viewmap(View v) {
+
 		Intent viewmap = new Intent(Preview.this, MainActivity.class);
-		
+
 		Bundle bundle = getIntent().getExtras();
 		viewmap.putExtras(bundle);
 		startActivity(viewmap);
@@ -86,6 +90,17 @@ public class Preview extends DashBoardActivity {
 	}
 
 	public void clickwebsite(View v) {
+		Bundle bundle3 = getIntent().getExtras();
+
+		//final Integer bg = bundle3.getInt("background");
+		// Integer position = bundle3.getInt("position");
+		final Integer pos = bundle3.getInt("pos");
+		
+		if (pos == 6) {
+		Intent gowebsite2 = new Intent(Intent.ACTION_VIEW,Uri.parse("http://kenyanmathree.wordpress.com/2011/05/14/nairobi-matatu-route-map"));
+		startActivity(gowebsite2);
+		}else{
+		
 		Intent gowebsite = new Intent(Preview.this, Contact.class);
 		// startActivity(viewdescription);
 		Bundle bundle = getIntent().getExtras();
@@ -94,6 +109,8 @@ public class Preview extends DashBoardActivity {
 		// final String uri = bundle.getString("uri");
 		// Intent gowebsite = new Intent(Intent.ACTION_VIEW,Uri.parse(uri));
 		startActivity(gowebsite);
+		}
+
 	}
 
 }

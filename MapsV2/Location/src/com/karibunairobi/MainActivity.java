@@ -14,10 +14,12 @@
 
 package com.karibunairobi;
 
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -49,14 +51,29 @@ public class MainActivity extends AbstractMapActivity implements
 	private OnLocationChangedListener mapLocationListener = null;
 	private LocationManager locMgr = null;
 	private Criteria crit = new Criteria();
-	
-	String [] spliteddata;
-	public Bundle latData,longData;
-    public double lat,longi;
+
+	String[] spliteddata;
+	public Bundle latData, longData;
+	public double lat, longi;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Bundle bundle = getIntent().getExtras();
+		final Integer pos = bundle.getInt("pos");
+		final Integer position = bundle.getInt("position");
+		final Integer bg = bundle.getInt("background");
+		final String title = bundle.getString("title");
+
+		int position2 = position + 1;
+		StringBuffer sb = new StringBuffer();
+		sb.append("m").append(pos).append(position2);
+		String result = sb.toString();
+		int resID = getResources().getIdentifier(result, "string",
+				getPackageName());
+
+		String strTest = getResources().getString(resID);
 
 		if (readyToGo()) {
 			setContentView(R.layout.activity_main);
@@ -68,28 +85,13 @@ public class MainActivity extends AbstractMapActivity implements
 
 			map = mapFrag.getMap();
 
-			Bundle bundle = getIntent().getExtras();
-			final Integer pos = bundle.getInt("pos");
-			final Integer position = bundle.getInt("position");
-			final Integer bg = bundle.getInt("background");
-			final String title = bundle.getString("title");
-			
-			int position2 = position + 1;
-			StringBuffer sb = new StringBuffer();
-			sb.append("m").append(pos).append(position2);
-			String result = sb.toString();
-			int resID = getResources().getIdentifier(result, "string",
-					getPackageName());
-			
-			String strTest = getResources().getString(resID);
-			
-			 spliteddata = strTest.split(",");
+			spliteddata = strTest.split(",");
 			String longi = spliteddata[0];
 			String latt = spliteddata[1];
-			
+
 			double lat = Double.parseDouble(latt);
-	        double lng = Double.parseDouble(longi);
-			 
+			double lng = Double.parseDouble(longi);
+
 			if (savedInstanceState == null) {
 				CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
 						lat, lng));
@@ -99,14 +101,13 @@ public class MainActivity extends AbstractMapActivity implements
 				map.animateCamera(zoom);
 			}
 
-			addMarker(map, lat, lng, title,
-					title);
-			//addMarker(map, -1.298722, 36.890851, R.string.lincoln_center,
-			//		R.string.lincoln_center_snippet);
-			//addMarker(map, 40.765136435316755, -73.97989511489868,
-			//		R.string.carnegie_hall, R.string.practice_x3);
-			//addMarker(map, 40.70686417491799, -74.01572942733765,
-			//		R.string.downtown_club, R.string.heisman_trophy);
+			addMarker(map, lat, lng, title, title);
+			// addMarker(map, -1.298722, 36.890851, R.string.lincoln_center,
+			// R.string.lincoln_center_snippet);
+			// addMarker(map, 40.765136435316755, -73.97989511489868,
+			// R.string.carnegie_hall, R.string.practice_x3);
+			// addMarker(map, 40.70686417491799, -74.01572942733765,
+			// R.string.downtown_club, R.string.heisman_trophy);
 
 			map.setInfoWindowAdapter(new PopupAdapter(getLayoutInflater()));
 			map.setOnInfoWindowClickListener(this);
@@ -223,8 +224,8 @@ public class MainActivity extends AbstractMapActivity implements
 		bar.setListNavigationCallbacks(nav, this);
 	}
 
-	private void addMarker(GoogleMap map, double lat, double lon, String titled,
-			String snippeted) {
+	private void addMarker(GoogleMap map, double lat, double lon,
+			String titled, String snippeted) {
 		map.addMarker(new MarkerOptions().position(new LatLng(lat, lon))
 				.title(titled).snippet(snippeted));
 	}

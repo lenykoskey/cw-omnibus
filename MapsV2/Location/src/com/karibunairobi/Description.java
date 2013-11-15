@@ -3,6 +3,7 @@ package com.karibunairobi;
 import android.R.integer;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,21 +27,30 @@ public class Description extends DashBoardActivity {
 		if (pos == 2) {
 			// HeaderText.setTextColor(232323);
 			if (position < 5) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.uchumilarge));
+				//ln.setBackgroundDrawable(getResources().getDrawable(
+				//		R.drawable.uchumilargej));
+				ln.setBackgroundColor(Color.parseColor("#ff0000"));
 
 			}
 			if ((position > 4) && (position < 10)) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.nakumattbg));
+//				ln.setBackgroundDrawable(getResources().getDrawable(
+//						R.drawable.nakumattbg));
+				ln.setBackgroundColor(Color.parseColor("#183579"));
 			}
 			if ((position > 9) && (position < 15)) {
-				ln.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.tuskybg));
+//				ln.setBackgroundDrawable(getResources().getDrawable(
+//						R.drawable.tuskybg));
+				ln.setBackgroundColor(Color.parseColor("#45734f"));
 			}
 		}
 		if (pos != 2) {
 			ln.setBackgroundDrawable(getResources().getDrawable(bg));
+		}
+		if (pos == 3) {
+			HeaderText.setTextColor(Color.parseColor("#561314"));
+		}
+		if (pos == 4) {
+			HeaderText.setTextColor(Color.parseColor("#ffffff"));
 		}
 		int position2 = position + 1;
 		// char[] ls = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();

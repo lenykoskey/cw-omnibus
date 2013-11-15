@@ -41,7 +41,7 @@ public class MainMenu extends DashBoardActivity {
 		case R.id.btn_cabs:
 			intent = new Intent(this, Listview.class);
 			bundle.putInt("pos", 3);
-			bundle.putInt("background", R.drawable.yellowcab);
+			bundle.putInt("background", R.drawable.yellowtaxi);
 			bundle.putString("Header", "Cabs Services");
 			intent.putExtras(bundle);
 			startActivity(intent);
@@ -50,7 +50,7 @@ public class MainMenu extends DashBoardActivity {
 		case R.id.btn_attractions:
 			intent = new Intent(this, Listview.class);
 			bundle.putInt("pos", 4);
-			bundle.putInt("background", R.drawable.attractionsmainbg);
+			bundle.putInt("background", R.drawable.nai);
 			bundle.putString("Header", "Attractions");
 			intent.putExtras(bundle);
 			startActivity(intent);

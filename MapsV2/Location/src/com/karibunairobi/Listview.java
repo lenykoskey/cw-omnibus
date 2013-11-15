@@ -143,7 +143,7 @@ public class Listview extends Activity {
 					R.drawable.rafikiz, "Wet"));
 			myItems.add(new ListItems("Casablanca", R.drawable.casablanca,
 					"Fast!"));
-			myItems.add(new ListItems("Taboo", R.drawable.yellowcab, "Awesome"));
+			myItems.add(new ListItems("Taboo", R.drawable.taboologo, "Awesome"));
 
 			break;
 		case 6:
@@ -181,7 +181,7 @@ public class Listview extends Activity {
 					int position, long id) {
 
 				ListItems clickedCar = myItems.get(position);
-				
+
 				String title = clickedCar.getMake();
 
 				Intent intent;
@@ -192,10 +192,10 @@ public class Listview extends Activity {
 				intent = new Intent(Listview.this, Preview.class);
 				Bundle bundle2 = new Bundle();
 				bundle2.putInt("pos", pos);
-			
+
 				bundle2.putInt("position", position);
 				bundle2.putInt("background", bg);
-				bundle2.putString("title",title);
+				bundle2.putString("title", title);
 				intent.putExtras(bundle2);
 				startActivity(intent);
 
